@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Redirect</title>
+    <script type="text/javascript">
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const credentialOffer = urlParams.get('credential_offer_uri');
+            
+            if (credentialOffer) {
+                // Construct the custom protocol link
+                const redirectUrl = `openid-credential-offer://?credential_offer_uri=${credentialOffer}`;
+                // Redirect to the custom protocol link
+                window.location.href = redirectUrl;
+            } else {
+                document.body.innerHTML = "<p>No credential offer URI provided.</p>";
+            }
+        };
+    </script>
+</head>
+<body>
+    <p>If all goes to plan, opening wallet...</p>
+    <p>Note this only works on a device that has a credential wallet installed</p>
+</body>
+</html>
